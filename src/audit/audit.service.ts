@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Audit } from '@prisma/client';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class AuditService {
@@ -11,7 +11,18 @@ export class AuditService {
   }
 
   async findAll() {
-    return this.prisma.audit.findMany({ include: { user: true } });
+    return this.prisma.audit.findMany({
+      select: {
+        id: true,
+        date: true,
+        user: {
+          select: {
+            username: true,
+            email: true,
+          },
+        },
+      },
+    });
   }
 
   async create(data: Prisma.AuditCreateInput): Promise<Audit> {
