@@ -16,7 +16,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   const PORT = 8080;
 
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup(`${prefix}/docs`, app, document);
 
   app.setGlobalPrefix(prefix);
   await prismaService.enableShutdownHooks(app);

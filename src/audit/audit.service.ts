@@ -10,6 +10,10 @@ export class AuditService {
     return this.prisma.audit.findUnique({ where });
   }
 
+  async findAll() {
+    return this.prisma.audit.findMany({ include: { user: true } });
+  }
+
   async create(data: Prisma.AuditCreateInput): Promise<Audit> {
     return this.prisma.audit.create({ data });
   }
