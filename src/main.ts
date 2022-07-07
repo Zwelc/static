@@ -14,7 +14,7 @@ async function bootstrap() {
 
   const prefix = 'api';
   const document = SwaggerModule.createDocument(app, config);
-  const PORT = 8080;
+  const PORT = process.env.PORT || 8080;
 
   SwaggerModule.setup(`${prefix}/docs`, app, document);
 
