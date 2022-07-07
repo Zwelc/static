@@ -16,7 +16,7 @@ export class UsersService {
   }
 
   async registerUser(data: Prisma.UserCreateInput): Promise<any> {
-    const user = await this.prisma.user.findFirst({
+    const user = await this.prisma.user.findUnique({
       where: { username: data.username },
     });
 

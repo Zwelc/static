@@ -21,7 +21,7 @@ const DataTable = ({ data }) => {
   };
   const emptyRows = Math.max(0, (1 + page) * rowsPerPage - data.length);
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative m-8 space-y-4 overflow-x-auto shadow-md sm:rounded-lg w-full">
       <table className="w-full text-sm text-left text-gray-500 ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>

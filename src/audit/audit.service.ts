@@ -15,6 +15,7 @@ export class AuditService {
       select: {
         id: true,
         date: true,
+        action: true,
         user: {
           select: {
             username: true,

@@ -4,10 +4,10 @@ import { useUser } from '../../hooks/useUser';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../context';
-import intercept from '../../util/intercept';
 
 export default function Login() {
-  const { token, setToken } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const [user, { mutate }] = useUser();
   const [sign, setSign] = useState({
@@ -19,6 +19,7 @@ export default function Login() {
       navigate('/dashboard');
     }
   }, [user, navigate]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -26,7 +27,7 @@ export default function Login() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const request = await fetch('/api/auth/login', {
         method: 'POST',
@@ -38,86 +39,109 @@ export default function Login() {
 
       if (request.status === 201) {
         const data = await request.json();
-        console.log(`Setting token now: ${data.access_token}`);
 
         setToken(data.access_token);
-        mutate('/api/profile');
       }
     } catch (err) {
-      console.log(err);
+    } finally {
+      mutate('/api/profile');
+      setLoading(true);
     }
   };
   return (
     <>
-      <nav className="fixed z-50 h-24 w-full flex flex-row justify-between items-center px-12 py-2  bg-gray-400 text-gray-70">
-        <div className="text-2xl underline decoration-amber-700  text-gray-70">
-          <Link to="/">Static</Link>
-        </div>
-        <div>
-          <Link to="/register">
-            <button className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-gray-300 rounded-lg border border-gray-300 hover:bg-gray-200 hover:text-amber-700 focus:z-10 focus:ring-4 focus:ring-gray-200 ">
-              Register
-            </button>
-          </Link>
-          <Link to="/login">
-            <button
-              className="text-white bg-amber-800 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 cursor-not-allowed"
-              disabled
-            >
-              Login
-            </button>
-          </Link>
-
-          <div></div>
-        </div>
-      </nav>
-      <div className="relative h-screen bg-gray-400 flex flex-col justify-center items-center">
-        <h1 className="text-xl font-bold my-6">Please Sign in to Static</h1>
-        <div className="w-60">
+      <div className=" pt-28 h-screen flex items-center justify-center px-24 max-w-screen mx-auto bg-gray-300 bg-gradient-to-b from-gray-300 to-gray-100">
+        <div className="relative w-full max-w-lg">
+          <div className="absolute top-0 -left-20 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 "></div>
+          <div className="absolute bottom-8 -right-8 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 "></div>
           <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label
-                htmlFor="username"
-                className="block mb-2 text-sm font-medium text-gray-900 "
-              >
-                Your email
-              </label>
-              <input
-                id="username"
-                name="username"
-                value={sign.username}
-                onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="password"
-                className="block mb-2 text-sm font-medium text-gray-900 "
-              >
-                Your password
-              </label>
-              <input
-                id="password"
-                name="password"
-                value={sign.password}
-                onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              />
-            </div>
-            <div className="mb-6">
-              <Link to="/">
-                <button className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-gray-300 rounded-lg border border-gray-300 hover:bg-gray-200 hover:text-amber-700 focus:z-10 focus:ring-4 focus:ring-gray-200 ">
-                  Back to Home
-                </button>
-              </Link>
+            <div className="relative m-8 space-y-4">
+              <div className="p-5 bg-white rounded-lg flex items-center justify-between space-x-8">
+                <div className="flex-1">
+                  <div className="mb-6 flex justify-center items-center">
+                    <div className="text-xl font-semibold p-">
+                      Please Sign in{' '}
+                    </div>
+                  </div>
+                  <div className="mb-6 flex-1 flex justify-center items-center">
+                    <label
+                      htmlFor="username"
+                      class="block mb-2 text-sm font-medium text-gray-900  mr-4"
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={sign.username}
+                      onChange={handleChange}
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                      required
+                    />
+                  </div>
 
-              <button
-                type="submit"
-                className="text-white bg-amber-800 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-              >
-                Submit
-              </button>
+                  <div className="flex-1 flex justify-center items-center">
+                    <label
+                      htmlFor="password"
+                      class="block mb-2 text-sm font-medium text-gray-900  mr-4"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={sign.password}
+                      onChange={handleChange}
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-white rounded-lg flex items-center justify-between space-x-8">
+                <div className="flex-1 flex items-center justify-between">
+                  <button
+                    type="submit"
+                    className="focus:outline-none text-gray-500 bg-gray-200 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+                    Go back to Home
+                  </button>
+                  {/* {loading ? (
+									<button
+									disabled
+									type="submit"
+									className="focus:outline-none text-white bg-amber-600 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+									<svg
+									role="status"
+                      class="inline w-4 h-4 mr-3 text-white animate-spin"
+                      viewBox="0 0 100 101"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+											>
+                      <path
+											d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+											fill="#E5E7EB"
+                      />
+                      <path
+											d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+											fill="currentColor"
+                      />
+											</svg>
+											</button>
+										) : ( */}
+                  <button
+                    type="submit"
+                    className="focus:outline-none text-white bg-amber-600 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+                    Submit
+                  </button>
+                  {/* )} */}
+                </div>
+              </div>
             </div>
           </form>
         </div>

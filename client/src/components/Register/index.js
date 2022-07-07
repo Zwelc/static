@@ -31,93 +31,96 @@ export default function Register() {
   };
   return (
     <>
-      <nav className="fixed z-50 h-24 w-full flex flex-row justify-between items-center px-12 py-2  bg-gray-400 text-gray-70">
-        <div className="text-2xl underline decoration-amber-700  text-gray-70">
-          <Link to="/">Static</Link>
-        </div>
-        <div>
-          <Link to="/register">
-            <button
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-gray-300 rounded-lg border border-gray-300  focus:z-10 focus:ring-4 focus:ring-gray-200 cursor-not-allowed"
-              disabled
-            >
-              Register
-            </button>
-          </Link>
-          <Link to="/login">
-            <button className="text-white bg-amber-800 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">
-              Login
-            </button>
-          </Link>
+      <div className=" pt-28 h-screen flex items-center justify-center px-24 max-w-screen mx-auto bg-gray-300 bg-gradient-to-b from-gray-300 to-gray-100">
+        <div className="relative w-full max-w-lg">
+          <div className="absolute top-0 -left-20 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 "></div>
+          <div className="absolute bottom-8 -right-8 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 "></div>
+          <form onSubmit={handleSubmit}>
+            <div className="relative m-8 space-y-4">
+              <div className="p-5 bg-white rounded-lg flex items-center justify-between space-x-8">
+                <div className="flex-1">
+                  <div className="mb-6 flex justify-center items-center">
+                    <div className="text-xl font-semibold p-">
+                      Please Register{' '}
+                    </div>
+                  </div>
+                  <div className="mb-6 flex-1 flex justify-center items-center">
+                    <label
+                      htmlFor="username"
+                      class="block mb-2 text-sm font-medium text-gray-900  mr-4"
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      value={user.username}
+                      onChange={handleChange}
+                      name="username"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                      required
+                    />
+                  </div>
 
-          <div></div>
-        </div>
-      </nav>
+                  <div className="mb-6 flex-1 flex justify-center items-center">
+                    <label
+                      htmlFor="password"
+                      class="block mb-2 text-sm font-medium text-gray-900  mr-11"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={user.email}
+                      onChange={handleChange}
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                      required
+                    />
+                  </div>
+                  <div className="mb-6 flex-1 flex justify-center items-center">
+                    <label
+                      htmlFor="password"
+                      class="block mb-2 text-sm font-medium text-gray-900  mr-4"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={user.password}
+                      onChange={handleChange}
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
 
-      <div className="relative h-screen bg-gray-400 flex flex-col justify-center items-center">
-        <h1 className="text-xl font-bold my-6">
-          Please Register to Sign into Static
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label
-              htmlFor="username"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              Your username
-            </label>
-            <input
-              id="username"
-              name="username"
-              value={user.username}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              Your email
-            </label>
-            <input
-              id="email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              Your password
-            </label>
-            <input
-              id="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            />
-          </div>
-          <div className="mb-6">
-            <Link to="/">
-              <button className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-gray-300 rounded-lg border border-gray-300 hover:bg-gray-200 hover:text-amber-700 focus:z-10 focus:ring-4 focus:ring-gray-200 ">
-                Back to Home
-              </button>
-            </Link>
-            <button
-              type="submit"
-              className="text-white bg-amber-800 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+              <div className="p-5 bg-white rounded-lg flex items-center justify-between space-x-8">
+                <div className="flex-1 flex items-center justify-between">
+                  <Link to="/">
+                    <button
+                      type="submit"
+                      className="focus:outline-none text-gray-500 bg-gray-200 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                    >
+                      Go back to Home
+                    </button>
+                  </Link>
+
+                  <button
+                    type="submit"
+                    className="focus:outline-none text-white bg-amber-600 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

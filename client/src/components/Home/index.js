@@ -3,112 +3,40 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <>
-      <nav className="fixed z-50 h-24 w-full flex flex-row justify-between items-center px-12 py-2  bg-gray-400 text-gray-70">
-        <div className="text-2xl underline decoration-amber-700  text-gray-70">
-          Static
-        </div>
-        <div>
-          <Link to="/register">
-            <button className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-gray-300 rounded-lg border border-gray-300 hover:bg-gray-200 hover:text-amber-700 focus:z-10 focus:ring-4 focus:ring-gray-200 ">
-              Register
-            </button>
-          </Link>
+      <div className=" pt-32 h-screen flex justify-between px-24 max-w-screen mx-auto bg-gray-300 bg-gradient-to-b from-gray-300 to-gray-100">
+        <div className="max-w-md">
+          <span className="font-medium text-amber-600">Lorem ipsum dolor</span>
+          <p className="text-6xl font-bold tracking-tighter leading-tight">
+            Lorem ipsum dolor sit amet consectetur
+          </p>
+          <p className="pt-8 text-lg font-normal text-gray-800">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            blanditiis facilis, magnam explicabo illo expedita laborum neque aut
+            pariatur quae sapiente repudiandae recusandae vitae sint sed
+            praesentium mollitia, nobis ducimus? Sunt odio recusandae excepturi
+            quia eius molestiae harum voluptas dolore veniam corrupti minima
+            perferendis nemo distinctio atque, tempora ea sapiente ex corporis
+            praesentium, laborum expedita. Quo sed dolorum nostrum nesciunt. Non
+            distinctio eligendi illo aut a quo sed tempora temporibus incidunt,
+            ratione saepe repellat perferendis? Non vel, alias optio fugiat,
+            quas nobis maxime quo assumenda aperiam, minus excepturi veritatis
+            natus!
+          </p>
           <Link to="/login">
-            <button className="text-white bg-amber-800 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-              Login
+            <button className="focus:outline-none text-white bg-amber-600 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-lg px-5 py-2.5 mr-2 my-2">
+              Get Started{' '}
             </button>
           </Link>
+        </div>
+        <div className="relative w-full max-w-lg">
+          <div className="absolute top-0 -left-20 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+          <div className="absolute bottom-8 -right-8 w-72 h-72 bg-gray-400 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
 
-          <div></div>
-        </div>
-      </nav>
-
-      <section className="bg-gray-400 text-gray-700  px-6 h-screen pt-24">
-        <div className="grid grid-cols-6 p-4">
-          <div className="col-span-4">
-            <h1 className="text-4xl font-bold">Welcome to Static</h1>
-            <p className="text-xl">Static is a simple bread browsing site.</p>
-            <p className="text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              aspernatur natus debitis corrupti harum similique mollitia aliquid
-              facere sit dignissimos dolor sed, distinctio veniam placeat est
-              quis, atque doloremque consequatur. Accusamus sapiente dolore
-              culpa, in cupiditate architecto esse eveniet, modi, molestiae quam
-              minima ipsam quas non eum distinctio odit possimus repudiandae?
-              Quia quo nostrum odit magni similique, fuga eum error. Sapiente
-              maxime quibusdam, aperiam culpa eaque cumque debitis incidunt
-              nesciunt porro obcaecati eos autem! Unde fugit odio tenetur
-              molestiae, amet repellendus, sit nam doloremque voluptas quo qui?
-              Laboriosam, est quo. Est quae eius provident accusantium,
-              blanditiis quam voluptate! Voluptate natus tempora eum
-              voluptatibus hic, quo nobis porro deserunt officia fuga, cumque
-              dolores tenetur libero recusandae quod
-            </p>
-          </div>
-          <div></div>
-        </div>
-      </section>
-      <section className="bg-gray-100 h-screen pt-24 px-6 ">
-        <div className="grid grid-cols-3 gap-4 p-4">
-          <div className="h-96 w-full shadow-md rounded py-4 px-3  flex flex-col justify-between items-center bg-white">
-            <div className="text-xl font-semibold">Static</div>
-            <div className="p-3 leading-6 mx-2 ">
-              {' '}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              aspernatur natus debitis corrupti harum similique mollitia aliquid
-              facere sit dignissimos dolor sed, distinctio veniam placeat est
-              quis, atque doloremque consequatur. Accusamus sapiente dolore
-              culpa, in cupiditate architecto
-            </div>
-            <button className="text-white bg-amber-800 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-              Learn More
-            </button>
-          </div>
-          <div className="h-96 w-full shadow-md rounded py-4 px-3  flex flex-col justify-between items-center bg-white">
-            <div className="text-xl font-semibold">Static</div>
-            <div className="p-3 leading-6 mx-2 ">
-              {' '}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              aspernatur natus debitis corrupti harum similique mollitia aliquid
-              facere sit dignissimos dolor sed, distinctio veniam placeat est
-              quis, atque doloremque consequatur. Accusamus sapiente dolore
-              culpa, in cupiditate architecto
-            </div>
-            <button className="text-white bg-amber-800 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-              Learn More
-            </button>
-          </div>
-          <div className="h-96 w-full shadow-md rounded py-4 px-3  flex flex-col justify-between items-center bg-white">
-            <div className="text-xl font-semibold">Static</div>
-            <div className="p-3 leading-6 mx-2 ">
-              {' '}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              aspernatur natus debitis corrupti harum similique mollitia aliquid
-              facere sit dignissimos dolor sed, distinctio veniam placeat est
-              quis, atque doloremque consequatur. Accusamus sapiente dolore
-              culpa, in cupiditate architecto
-            </div>
-            <button className="text-white bg-amber-800 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-              Learn More
-            </button>
+          <div className="relative top-8 left-4 h-[712px] w-[350px] rounded-[60px] bg-black overflow-hidden shadow-xl border-[14px] border-black z-10">
+            <div className="bg-amber-500 absolute inset-0 h-full w-full object-cover"></div>
           </div>
         </div>
-      </section>
-      <section className=" h-24 w-full flex flex-row justify-between items-center px-12 py-2  bg-gray-400 text-gray-70 p-4 shadow">
-        <span className="text-sm text-gray-800 sm:text-center ">
-          © 2022 <span className="hover:underline">Static</span>. All Rights
-          Reserved.
-        </span>
-        <div>
-          <a
-            href="/api/docs"
-            target="_blank"
-            className="mr-4 hover:underline md:mr-6 "
-          >
-            Documentation
-          </a>
-        </div>
-      </section>
+      </div>
     </>
   );
 }
