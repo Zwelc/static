@@ -7,7 +7,6 @@ const RequestInterceptor = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      console.log(`Interceptor:`, token);
       axios.interceptors.request.use(async (config) => {
         const bearer = `Bearer ${token}`;
         config.headers.Authorization = bearer;
