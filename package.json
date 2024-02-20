@@ -14,7 +14,7 @@
 		"start": "nest start",
 		"start:dev": "nest start --watch",
 		"start:debug": "nest start --debug --watch",
-		"start:prod": "node dist/main",
+		"start:prod": "node dist/api/main",
 		"setup-db": "npx prisma migrate deploy ",
 		"setup-demo": "npm run build && npm run setup-db",
 		"demo": "npm run setup-demo && npm run start:prod",

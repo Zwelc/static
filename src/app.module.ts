@@ -15,7 +15,9 @@ import { ConfigModule } from '@nestjs/config';
     UsersModule,
     AuditModule,
     ServeStaticModule.forRoot({
-      rootPath: process.env.PRODUCTION ? join(__dirname, '..', 'client') : join(__dirname, '..', 'client', 'build') ,
+      rootPath: process.env.PRODUCTION
+        ? join(__dirname, '..', 'client')
+        : join(__dirname, '..', 'client'),
     }),
   ],
   controllers: [AppController],
